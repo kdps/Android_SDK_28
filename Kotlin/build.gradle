@@ -1,0 +1,59 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt' // Annotation Processing
+
+android {
+    compileSdkVersion 29
+    defaultConfig {
+        applicationId "app"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 57 // Application Version CODE
+        versionName "1.0.0" // Application Version
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true // vectorDrawables
+    }
+    buildTypes {
+        debug {
+            ext.enableCrashlytics = false // Do not use Crashlytics when debug build
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled = true // Use Data Binding
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    
+    // Ted Permission
+    implementation 'gun0912.ted:tedpermission:2.0.0'
+    
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    
+    // Firebase
+    implementation 'com.google.firebase:firebase-messaging:11.4.2'
+
+    // GCM
+    implementation 'com.google.android.gms:play-services-base:11.4.2'
+    implementation 'com.google.android.gms:play-services-location:11.4.2'
+    implementation 'com.google.android.gms:play-services-ads:11.4.2'
+    
+    // Support
+    implementation 'com.android.support:appcompat-v7:27+'
+    implementation 'com.android.support:cardview-v7:27+'
+    implementation 'com.android.support:support-v4:27+'
+    implementation 'com.android.support:design:27+'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support:multidex:1.0.3' // Dex Exception
+}
+
+apply plugin: 'com.google.gms.google-services'
